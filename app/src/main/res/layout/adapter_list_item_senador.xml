@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/list_view_vertical_margin"
+    android:paddingBottom="@dimen/list_view_vertical_margin"
+    android:paddingLeft="@dimen/list_view_horizontal_margin"
+    android:paddingRight="@dimen/list_view_horizontal_margin">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imagemSenador"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher"
+        app:civ_border_color="#FF000000"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="20dp">
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nomeSenador"
+            android:text="Acir Gurgacz"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/partidoSenador"
+            android:text="PT/SP"
+            android:textSize="14dp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

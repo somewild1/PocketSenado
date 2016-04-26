@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/menu_top_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_senadores"
+            android:icon="@drawable/ic_menu_person"
+            android:title="Senadores" />
+        <item
+            android:id="@+id/nav_comissoes"
+            android:icon="@drawable/ic_menu_people"
+            android:title="Comissões" />
+        <item
+            android:id="@+id/nav_sessoes_plenarias"
+            android:icon="@drawable/ic_menu_poll"
+            android:title="Sessões plenárias" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_glossary"
+            android:title="Glossário" />
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom_group"
+        android:checkableBehavior="none">
+            <item
+                android:id="@+id/nav_sobre"
+                android:icon="@drawable/ic_menu_info"
+                android:title="Sobre" />
+    </group>
+
+</menu>
