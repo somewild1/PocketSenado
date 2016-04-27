@@ -25,7 +25,7 @@ public class SenadorListAdapter extends ArrayAdapter<Senador> implements Filtera
 
     private Activity context;
     private List<Senador> senadores;
-    private List<Senador> filteredSenadores;
+    public List<Senador> filteredSenadores;
 
     public SenadorListAdapter(Activity context, List<Senador> senadores) {
         super(context, R.layout.adapter_list_item_senador, senadores);

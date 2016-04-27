@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.diegoabreu.pocketsenado.activity.SenadorDetailActivity"
+    tools:showIn="@layout/activity_senador_detail"
+    android:background="@color/gray_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nome_completo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Senador Aloysio Nunes Ferreira Filho"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/informacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Página do parlamentar"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding"
+        android:textColor="@color/colorAccent"
+        android:autoLink="all"
+        android:linksClickable="true"
+        android:onClick="sendEmail" />
+
+</LinearLayout>

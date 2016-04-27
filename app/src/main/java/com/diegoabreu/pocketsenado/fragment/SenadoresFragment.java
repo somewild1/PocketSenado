@@ -1,9 +1,13 @@
 package com.diegoabreu.pocketsenado.fragment;
 
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -12,10 +16,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.diegoabreu.pocketsenado.R;
+import com.diegoabreu.pocketsenado.activity.SenadorDetailActivity;
 import com.diegoabreu.pocketsenado.adapter.SenadorListAdapter;
 import com.diegoabreu.pocketsenado.model.Senador;
 import com.diegoabreu.pocketsenado.service.SenadorService;
@@ -38,6 +43,15 @@ public class SenadoresFragment extends Fragment {
 
         this.lvSenadores = (ListView) myView.findViewById(R.id.list_view_senador);
         this.senadorService = new SenadorService();
+
+        this.lvSenadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), SenadorDetailActivity.class);
+                intent.putExtra("senador", senadorListAdapter.filteredSenadores.get(i));
+                startActivity(intent);
+            }
+        });
 
         return myView;
     }

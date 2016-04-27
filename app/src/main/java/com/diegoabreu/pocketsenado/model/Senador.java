@@ -25,35 +25,6 @@ public class Senador implements Serializable {
     private String email;
     private String partido;
     private String estado;
-    private Drawable fotoDrawable = null;
-
-    public Drawable getFotoDrawable() {
-        if (fotoDrawable == null) {
-            new AsyncTask() {
-                @Override
-                protected Drawable doInBackground(Object[] objects) {
-                    Drawable draw = null;
-                    try {
-                        draw = Drawable.createFromStream(new URL((String) objects[0]).openStream(), "src");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return draw;
-                }
-
-                @Override
-                protected void onPostExecute(Object o) {
-                    fotoDrawable = (Drawable) o;
-                }
-            }.execute(this.foto);
-        }
-
-        return fotoDrawable;
-    }
-
-    public void setFotoDrawable(Drawable fotoDrawable) {
-        this.fotoDrawable = fotoDrawable;
-    }
 
     public int getId() {
         return id;

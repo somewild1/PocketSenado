@@ -8,4 +8,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_view_vertical_margin">8dp</dimen>
     <dimen name="list_view_horizontal_margin">15dp</dimen>
+    <dimen name="app_bar_height">320dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_detail_size">18dp</dimen>
+    <dimen name="block_detail_padding">16dp</dimen>
 </resources>

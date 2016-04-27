@@ -69,6 +69,45 @@ public class SenadorService {
         }
     }
 
+    public String getStringSenador(int id) {
+        URL url = null;
+        BufferedReader reader = null;
+
+        try {
+            url = new URL("http://legis.senado.gov.br/dadosabertos/senador/" + id);
+
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.connect();
+
+            InputStream inputStream = urlConnection.getInputStream();
+            StringBuffer buffer = new StringBuffer();
+
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line + "\n");
+            }
+
+            return buffer.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (final IOException e) {
+                    Log.e("PlaceholderFragment", "Error closing stream", e);
+                }
+            }
+        }
+    }
+
     public List<Senador> getSenadores() {
         String senadoresString = getStringSenadores();
         List<Senador> retorno = new ArrayList<>();
@@ -97,5 +136,7 @@ public class SenadorService {
 
         return retorno;
     }
+
+    //TODO: getSenador()
 
 }
