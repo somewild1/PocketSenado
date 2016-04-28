@@ -10,6 +10,8 @@ import com.diegoabreu.pocketsenado.activity.MainActivity;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Diego on 22/04/16.
@@ -25,6 +27,46 @@ public class Senador implements Serializable {
     private String email;
     private String partido;
     private String estado;
+    private String endereco;
+    private String telefone;
+    private String dataFiliacao;
+    private List<Comissao> comissoes = new ArrayList<>();
+
+    public void addComissao(Comissao comissao) {
+        comissoes.add(comissao);
+    }
+
+    public List<Comissao> getComissoes() {
+        return comissoes;
+    }
+
+    public void setComissoes(List<Comissao> comissoes) {
+        this.comissoes = comissoes;
+    }
+
+    public String getDataFiliacao() {
+        return dataFiliacao;
+    }
+
+    public void setDataFiliacao(String dataFiliacao) {
+        this.dataFiliacao = dataFiliacao;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
     public int getId() {
         return id;

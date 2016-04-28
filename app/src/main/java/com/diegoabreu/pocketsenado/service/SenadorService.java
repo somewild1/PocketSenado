@@ -3,6 +3,7 @@ package com.diegoabreu.pocketsenado.service;
 import android.util.Log;
 
 import com.diegoabreu.pocketsenado.model.Senador;
+import com.diegoabreu.pocketsenado.util.SenadorParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,43 +70,21 @@ public class SenadorService {
         }
     }
 
-    public String getStringSenador(int id) {
+    public InputStream getInputStreamSenador(int id) {
         URL url = null;
-        BufferedReader reader = null;
 
         try {
             url = new URL("http://legis.senado.gov.br/dadosabertos/senador/" + id);
 
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setRequestProperty("Accept", "application/json");
             urlConnection.connect();
 
-            InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
-
-            reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line + "\n");
-            }
-
-            return buffer.toString();
+            return urlConnection.getInputStream();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (final IOException e) {
-                    Log.e("PlaceholderFragment", "Error closing stream", e);
-                }
-            }
         }
+
     }
 
     public List<Senador> getSenadores() {
@@ -137,6 +116,13 @@ public class SenadorService {
         return retorno;
     }
 
-    //TODO: getSenador()
+    public Senador getSenador(Senador senador) {
+        InputStream inputStreamSenador = getInputStreamSenador(senador.getId());
+        SenadorParser parser = new SenadorParser();
+
+        senador = parser.parse(inputStreamSenador, senador);
+
+        return senador;
+    }
 
 }

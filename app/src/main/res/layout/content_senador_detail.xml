@@ -1,37 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.diegoabreu.pocketsenado.activity.SenadorDetailActivity"
     tools:showIn="@layout/activity_senador_detail"
     android:background="@color/gray_background"
-    android:orientation="vertical">
+    android:id="@+id/content_wraper" >
 
-    <TextView
-        android:id="@+id/nome_completo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_detail_size"
-        android:text="Senador Aloysio Nunes Ferreira Filho"
-        android:background="#fff"
-        android:layout_marginBottom="1dp"
-        android:padding="@dimen/block_detail_padding" />
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/informacoes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_detail_size"
-        android:text="Página do parlamentar"
-        android:background="#fff"
-        android:layout_marginBottom="1dp"
-        android:padding="@dimen/block_detail_padding"
-        android:textColor="@color/colorAccent"
-        android:autoLink="all"
-        android:linksClickable="true"
-        android:onClick="sendEmail" />
+        <TextView
+            android:id="@+id/nome_completo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="Aécio Neves da Cunha"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/filiacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="PSDB/MG desde 01/02/1999"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="aecio.neves@senador.leg.br"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding" />
+
+        <TextView
+            android:id="@+id/endereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="Anexo I, 11o. andar salas 1 a 6"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding" />
+
+        <TextView
+            android:id="@+id/comissoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="Comissões"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding"
+            android:textColor="@color/colorAccent"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:onClick="abrirComissoes" />
+
+        <TextView
+            android:id="@+id/materias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="Matérias"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding"
+            android:textColor="@color/colorAccent"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:onClick="abrirMaterias" />
+
+        <TextView
+            android:id="@+id/pagina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_detail_size"
+            android:text="Página do senador"
+            android:background="#fff"
+            android:layout_marginBottom="1dp"
+            android:padding="@dimen/block_detail_padding"
+            android:textColor="@color/colorAccent"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:onClick="abrirPagina" />
+
+    </LinearLayout>
+
+</FrameLayout>
