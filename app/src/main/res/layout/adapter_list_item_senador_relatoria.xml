@@ -3,23 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/gray_background">
-
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_detail_size"
-        android:background="@color/colorPrimaryDark"
-        android:paddingLeft="@dimen/block_detail_padding"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:id="@+id/ano"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        android:text="Projetos de 2016"
-        android:visibility="gone" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,20 +13,20 @@
         android:background="#fff"
         android:padding="@dimen/block_detail_padding"
         android:orientation="vertical"
-        android:layout_marginBottom="1dp">
+        android:layout_marginBottom="1dp" >
 
         <TextView
-            android:id="@+id/descricao_tipo"
+            android:id="@+id/materia_relatoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="PROJETO DE LEI DO SENADO" />
+            android:text="MATÉRIA: SF PLC 88/2012" />
 
         <TextView
-            android:id="@+id/casa_tipo_numero_ano"
+            android:id="@+id/comissao_relatoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SF PLS 663/2015" />
+            android:text="COMISSÃO: CCJ | Senado Federal" />
 
     </LinearLayout>
 

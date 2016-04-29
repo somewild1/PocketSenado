@@ -42,6 +42,10 @@ public class SenadorMateriaListAdapter extends ArrayAdapter<Materia> {
             ano.setVisibility(View.VISIBLE);
         }
 
+        if (position == (getCount() - 1)) {
+            convertView.setBackgroundResource(R.color.white);
+        }
+
         TextView tipoMateria = (TextView) convertView.findViewById(R.id.descricao_tipo);
         TextView casaTipoNumeroAno = (TextView) convertView.findViewById(R.id.casa_tipo_numero_ano);
 

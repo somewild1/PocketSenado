@@ -2,10 +2,12 @@ package com.diegoabreu.pocketsenado.adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.diegoabreu.pocketsenado.R;
@@ -35,6 +37,12 @@ public class SenadorComissaoListAdapter extends ArrayAdapter<Comissao> {
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.adapter_list_item_senador_comisssao, null, true);
+        }
+
+        Log.i("TESTE", position + " | " + getCount());
+
+        if (position == (getCount() - 1)) {
+            convertView.setBackgroundResource(R.color.white);
         }
 
         TextView nome = (TextView) convertView.findViewById(R.id.nome_comissao);

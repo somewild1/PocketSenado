@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.diegoabreu.pocketsenado.R;
+import com.diegoabreu.pocketsenado.fragment.ComissoesFragment;
 import com.diegoabreu.pocketsenado.fragment.SenadoresFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_senadores) {
             fragmentTransaction.replace(R.id.fragment_container, new SenadoresFragment()).commit();
         } else if (id == R.id.nav_comissoes) {
-
+            fragmentTransaction.replace(R.id.fragment_container, new ComissoesFragment()).commit();
         } else if (id == R.id.nav_sessoes_plenarias) {
 
         } else if (id == R.id.nav_manage) {

@@ -33,7 +33,19 @@ public class Senador implements Serializable {
     private String dataFiliacao;
     private List<Comissao> comissoes = new ArrayList<>();
     private List<Materia> materias = new ArrayList<>();
+    private List<Relatoria> relatorias = new ArrayList<>();
 
+    public void addRelatoria(Relatoria relatoria) {
+        this.relatorias.add(relatoria);
+    }
+
+    public List<Relatoria> getRelatorias() {
+        return relatorias;
+    }
+
+    public void setRelatorias(List<Relatoria> relatorias) {
+        this.relatorias = relatorias;
+    }
 
     public void addMateria(Materia materia) {
         materias.add(materia);

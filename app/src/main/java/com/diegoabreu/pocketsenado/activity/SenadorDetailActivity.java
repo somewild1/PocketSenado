@@ -2,43 +2,25 @@ package com.diegoabreu.pocketsenado.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.diegoabreu.pocketsenado.R;
 import com.diegoabreu.pocketsenado.adapter.SenadorComissaoListAdapter;
-import com.diegoabreu.pocketsenado.adapter.SenadorListAdapter;
 import com.diegoabreu.pocketsenado.adapter.SenadorMateriaListAdapter;
+import com.diegoabreu.pocketsenado.adapter.SenadorRelatoriaListAdapter;
 import com.diegoabreu.pocketsenado.model.Senador;
 import com.diegoabreu.pocketsenado.service.SenadorService;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 
 public class SenadorDetailActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 
@@ -52,6 +34,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
     TextView comissoesButton;
     AlertDialog comissoesAlertDialog;
     AlertDialog materiasAlertDialog;
+    AlertDialog relatoriasAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +46,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         // pegando as instâncias das views
         nomeCompleto = (TextView) findViewById(R.id.nome_completo);
         filiacao = (TextView) findViewById(R.id.filiacao);
-        contentWraper = (FrameLayout) findViewById(R.id.content_wraper);
+        contentWraper = (FrameLayout) findViewById(R.id.content_wrapper);
         comissoesButton = (TextView) findViewById(R.id.comissoes);
         email = (TextView) findViewById(R.id.email);
         endereco = (TextView) findViewById(R.id.endereco);
@@ -115,6 +98,10 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         builder = new AlertDialog.Builder(this);
         builder.setAdapter(new SenadorMateriaListAdapter(this, senador.getMaterias()), this);
         materiasAlertDialog = builder.create();
+
+        builder = new AlertDialog.Builder(this);
+        builder.setAdapter(new SenadorRelatoriaListAdapter(this, senador.getRelatorias()), this);
+        relatoriasAlertDialog = builder.create();
     }
 
     @Override
@@ -137,6 +124,8 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
     }
 
     public void abrirMaterias(View view) { materiasAlertDialog.show(); }
+
+    public void abrirRelatorias(View view) { relatoriasAlertDialog.show(); }
 
     //TODO: implementar o método onClick das comissões e das matérias
     @Override

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.diegoabreu.pocketsenado.model.Comissao;
 import com.diegoabreu.pocketsenado.model.Materia;
+import com.diegoabreu.pocketsenado.model.Relatoria;
 import com.diegoabreu.pocketsenado.model.Senador;
 
 import org.w3c.dom.Document;
@@ -14,7 +15,9 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -93,6 +96,40 @@ public class SenadorParser {
             if (listMaterias.size() > 0) {
                 Collections.sort(listMaterias);
                 senador.addMaterias(listMaterias);
+            }
+
+            // relatorias
+            NodeList relatorias = ((Element) root.getElementsByTagName("RelatoriasAtuais").item(0)).getElementsByTagName("Relatoria");
+            List<Relatoria> listRelatoria = new ArrayList<>();
+            for (int i = 0; i < relatorias.getLength(); i++) {
+                Relatoria relatoria = new Relatoria();
+
+                Materia materia = new Materia();
+                Element materiaElement = (Element) ((Element) relatorias.item(i)).getElementsByTagName("Materia").item(0);
+                materia.setEmenta(materiaElement.getElementsByTagName("EmentaMateria").item(0).getTextContent());
+                materiaElement = (Element) materiaElement.getElementsByTagName("IdentificacaoMateria").item(0);
+                materia.setSiglaCasa(materiaElement.getElementsByTagName("SiglaCasaIdentificacaoMateria").item(0).getTextContent());
+                materia.setAno(materiaElement.getElementsByTagName("AnoMateria").item(0).getTextContent());
+                materia.setDescricaoTipo(materiaElement.getElementsByTagName("DescricaoSubtipoMateria").item(0).getTextContent());
+                materia.setId(Integer.parseInt(materiaElement.getElementsByTagName("CodigoMateria").item(0).getTextContent()));
+                materia.setNomeCasa(materiaElement.getElementsByTagName("NomeCasaIdentificacaoMateria").item(0).getTextContent());
+                materia.setNumero(materiaElement.getElementsByTagName("NumeroMateria").item(0).getTextContent());
+                materia.setSiglaTipo(materiaElement.getElementsByTagName("SiglaSubtipoMateria").item(0).getTextContent());
+
+                relatoria.setMateria(materia);
+
+                Element comissaoElement = (Element) ((Element) relatorias.item(i)).getElementsByTagName("IdentificacaoComissao").item(0);
+                Comissao comissao = new Comissao();
+                comissao.setId(Integer.parseInt(comissaoElement.getElementsByTagName("CodigoComissao").item(0).getTextContent()));
+                comissao.setNome(comissaoElement.getElementsByTagName("NomeComissao").item(0).getTextContent());
+                comissao.setNomeCasa(comissaoElement.getElementsByTagName("NomeCasaComissao").item(0).getTextContent());
+                comissao.setSigla(comissaoElement.getElementsByTagName("SiglaComissao").item(0).getTextContent());
+                comissao.setSiglaCasa(comissaoElement.getElementsByTagName("SiglaCasaComissao").item(0).getTextContent());
+
+                relatoria.setComissao(comissao);
+                relatoria.setDataDesignacao(((Element) relatorias.item(0)).getElementsByTagName("DataDesignacao").item(0).getTextContent());
+
+                senador.addRelatoria(relatoria);
             }
 
             return senador;
