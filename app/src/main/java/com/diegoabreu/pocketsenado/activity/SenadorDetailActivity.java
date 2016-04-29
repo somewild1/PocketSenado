@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.diegoabreu.pocketsenado.R;
 import com.diegoabreu.pocketsenado.adapter.SenadorComissaoListAdapter;
 import com.diegoabreu.pocketsenado.adapter.SenadorListAdapter;
+import com.diegoabreu.pocketsenado.adapter.SenadorMateriaListAdapter;
 import com.diegoabreu.pocketsenado.model.Senador;
 import com.diegoabreu.pocketsenado.service.SenadorService;
 import com.squareup.picasso.Picasso;
@@ -50,6 +51,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
     FrameLayout contentWraper;
     TextView comissoesButton;
     AlertDialog comissoesAlertDialog;
+    AlertDialog materiasAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,9 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         builder.setAdapter(new SenadorComissaoListAdapter(this, senador.getComissoes()), this);
         comissoesAlertDialog = builder.create();
 
-        //TODO: implementar a abertura da lista de matérias
+        builder = new AlertDialog.Builder(this);
+        builder.setAdapter(new SenadorMateriaListAdapter(this, senador.getMaterias()), this);
+        materiasAlertDialog = builder.create();
     }
 
     @Override
@@ -132,7 +136,9 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         comissoesAlertDialog.show();
     }
 
-    //TODO: implementar o método onClick das comissões
+    public void abrirMaterias(View view) { materiasAlertDialog.show(); }
+
+    //TODO: implementar o método onClick das comissões e das matérias
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
 

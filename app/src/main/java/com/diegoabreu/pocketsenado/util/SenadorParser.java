@@ -3,6 +3,7 @@ package com.diegoabreu.pocketsenado.util;
 import android.util.Log;
 
 import com.diegoabreu.pocketsenado.model.Comissao;
+import com.diegoabreu.pocketsenado.model.Materia;
 import com.diegoabreu.pocketsenado.model.Senador;
 
 import org.w3c.dom.Document;
@@ -12,6 +13,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -57,6 +61,38 @@ public class SenadorParser {
                 comissao.setSiglaCasa(comissaoElement.getElementsByTagName("SiglaCasaComissao").item(0).getTextContent());
 
                 senador.addComissao(comissao);
+            }
+
+            // matérias
+            NodeList materias = ((Element) root.getElementsByTagName("MateriasDeAutoriaTramitando").item(0)).getElementsByTagName("Materia");
+            List<Materia> listMaterias = new ArrayList<>();
+            String ultimoAno = "";
+            for (int i = 0; i < materias.getLength(); i++) {
+                Materia materia = new Materia();
+                materia.setEmenta(((Element) materias.item(i)).getElementsByTagName("EmentaMateria").item(0).getTextContent());
+                Element materiaElement = (Element) ((Element) materias.item(i)).getElementsByTagName("IdentificacaoMateria").item(0);
+                materia.setSiglaCasa(materiaElement.getElementsByTagName("SiglaCasaIdentificacaoMateria").item(0).getTextContent());
+                materia.setAno(materiaElement.getElementsByTagName("AnoMateria").item(0).getTextContent());
+                materia.setDescricaoTipo(materiaElement.getElementsByTagName("DescricaoSubtipoMateria").item(0).getTextContent());
+                materia.setId(Integer.parseInt(materiaElement.getElementsByTagName("CodigoMateria").item(0).getTextContent()));
+                materia.setNomeCasa(materiaElement.getElementsByTagName("NomeCasaIdentificacaoMateria").item(0).getTextContent());
+                materia.setNumero(materiaElement.getElementsByTagName("NumeroMateria").item(0).getTextContent());
+                materia.setSiglaTipo(materiaElement.getElementsByTagName("SiglaSubtipoMateria").item(0).getTextContent());
+
+                if (materia.getAno().equals(ultimoAno) || i == 0) {
+                    listMaterias.add(materia);
+                    ultimoAno = materia.getAno();
+                } else {
+                    Collections.sort(listMaterias);
+                    senador.addMaterias(listMaterias);
+                    listMaterias = new ArrayList<>();
+                    listMaterias.add(materia);
+                    ultimoAno = materia.getAno();
+                }
+            }
+            if (listMaterias.size() > 0) {
+                Collections.sort(listMaterias);
+                senador.addMaterias(listMaterias);
             }
 
             return senador;

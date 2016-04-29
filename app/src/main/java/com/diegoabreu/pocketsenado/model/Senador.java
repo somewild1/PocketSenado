@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,6 +32,24 @@ public class Senador implements Serializable {
     private String telefone;
     private String dataFiliacao;
     private List<Comissao> comissoes = new ArrayList<>();
+    private List<Materia> materias = new ArrayList<>();
+
+
+    public void addMateria(Materia materia) {
+        materias.add(materia);
+    }
+
+    public void addMaterias(List<Materia> materias) {
+        this.materias.addAll(0, materias);
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
+    }
 
     public void addComissao(Comissao comissao) {
         comissoes.add(comissao);
@@ -137,4 +156,5 @@ public class Senador implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
 }
