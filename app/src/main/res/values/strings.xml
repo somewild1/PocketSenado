@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Pocket Senado</string>
 
+    <string-array name="tipos_comissoes_array">
+        <item>Permanente</item>
+        <item>CPI</item>
+        <item>Temporária</item>
+    </string-array>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

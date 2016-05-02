@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/text_detail_size"
+    android:background="#fff"
+    android:padding="@dimen/block_detail_padding"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nome_comissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Comissão de Constituição, Justiça e Cidadania" />
+
+    <TextView
+        android:id="@+id/sigla_e_casa_comissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TEMPORÁRIA - CCJ | Senado Federal" />
+
+</LinearLayout>

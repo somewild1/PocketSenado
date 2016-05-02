@@ -29,7 +29,7 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class SenadorParser {
 
-    public Senador parse(InputStream inputStreamSenador, Senador senador) {
+    public Senador parse(InputStream inputStream, Senador senador) {
 
         try {
             // criando um DocumentBuilder
@@ -37,7 +37,7 @@ public class SenadorParser {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
             // definindo o arquivo que vai ser parseado
-            Document document = builder.parse(inputStreamSenador);
+            Document document = builder.parse(inputStream);
             document.getDocumentElement().normalize();
 
             // pegando a tag root Parlamentar

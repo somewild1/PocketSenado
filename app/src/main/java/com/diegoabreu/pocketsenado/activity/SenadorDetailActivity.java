@@ -46,7 +46,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         // pegando as instâncias das views
         nomeCompleto = (TextView) findViewById(R.id.nome_completo);
         filiacao = (TextView) findViewById(R.id.filiacao);
-        contentWraper = (FrameLayout) findViewById(R.id.content_wrapper);
+        contentWraper = (FrameLayout) findViewById(R.id.content_senador_detail_wrapper);
         comissoesButton = (TextView) findViewById(R.id.comissoes);
         email = (TextView) findViewById(R.id.email);
         endereco = (TextView) findViewById(R.id.endereco);

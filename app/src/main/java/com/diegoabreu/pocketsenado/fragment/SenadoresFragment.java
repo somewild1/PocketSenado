@@ -40,7 +40,6 @@ public class SenadoresFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.fragment_senadores, container, false);
-
         setHasOptionsMenu(true);
 
         this.lvSenadores = (ListView) myView.findViewById(R.id.list_view_senador);
