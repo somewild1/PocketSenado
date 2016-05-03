@@ -9,7 +9,7 @@ Aplicação para Android, nativa, que tem como objetivo principal trazer informa
 - Agenda do senado
 - Progresso de matérias
 
-![]({{site.baseurl}}/screenshots/prints.png)
+![](https://raw.githubusercontent.com/somewild1/PocketSenado/master/screenshots/prints.png)
 
 **OBS:** algumas funcionalidades apresentadas nas screenshots podem ser alteradas, visto que o aplicativo está em seu estágio inicial e algumas ideias podem não ser implementadas.
 
