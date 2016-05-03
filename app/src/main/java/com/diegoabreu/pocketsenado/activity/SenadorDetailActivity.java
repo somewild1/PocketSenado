@@ -30,7 +30,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
     TextView filiacao;
     TextView email;
     TextView endereco;
-    FrameLayout contentWraper;
+    FrameLayout contentWrapper;
     TextView comissoesButton;
     AlertDialog comissoesAlertDialog;
     AlertDialog materiasAlertDialog;
@@ -46,7 +46,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         // pegando as instâncias das views
         nomeCompleto = (TextView) findViewById(R.id.nome_completo);
         filiacao = (TextView) findViewById(R.id.filiacao);
-        contentWraper = (FrameLayout) findViewById(R.id.content_senador_detail_wrapper);
+        contentWrapper = (FrameLayout) findViewById(R.id.content_senador_detail_wrapper);
         comissoesButton = (TextView) findViewById(R.id.comissoes);
         email = (TextView) findViewById(R.id.email);
         endereco = (TextView) findViewById(R.id.endereco);
@@ -75,7 +75,7 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
             @Override
             protected void onPostExecute(Object o) {
                 carregaInformacoes();
-                contentWraper.setVisibility(View.VISIBLE);
+                contentWrapper.setVisibility(View.VISIBLE);
             }
         }.execute();
 

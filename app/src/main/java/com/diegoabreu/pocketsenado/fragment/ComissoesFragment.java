@@ -58,7 +58,7 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
     public void onStart() {
         super.onStart();
 
-        refreshComissoes(Comissao.TipoComissao.PERMANENTE);
+
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Comissões");
     }
@@ -121,6 +121,7 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        refreshComissoes(Comissao.TipoComissao.PERMANENTE);
     }
+
 }
