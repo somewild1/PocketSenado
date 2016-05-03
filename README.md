@@ -1,5 +1,5 @@
 # PocketSenado
-Aplicação para Android, nativa, que tem como objetivo principal trazer informações sobre o Senado Federal. A ideia, ainda em desenvolvimento inicial, tem como proposta oferecer as seguintes funcionalidades:é trazer os dados principais sobre os senadores, assim como as comissões das quais eles fazem parte, os seus projetos e propostas, dados sobre a agenda do senado, etc.
+Aplicação para Android, nativa, que tem como objetivo principal trazer informações sobre o Senado Federal. A ideia, ainda em desenvolvimento inicial, tem como proposta oferecer as seguintes funcionalidades:
 
 - Dados principais dos senadores
 - Comissões das quais eles fazem parte
