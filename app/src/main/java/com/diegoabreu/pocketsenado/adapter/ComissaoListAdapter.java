@@ -19,7 +19,7 @@ import java.util.List;
 public class ComissaoListAdapter extends ArrayAdapter<Comissao> {
 
     private Activity context;
-    private List<Comissao> comissoes;
+    public List<Comissao> comissoes;
 
     public ComissaoListAdapter(Activity context, List<Comissao> comissoes) {
         super(context, R.layout.adapter_list_comisssao, comissoes);

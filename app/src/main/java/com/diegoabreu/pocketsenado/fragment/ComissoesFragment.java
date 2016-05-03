@@ -1,6 +1,7 @@
 package com.diegoabreu.pocketsenado.fragment;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.diegoabreu.pocketsenado.R;
+import com.diegoabreu.pocketsenado.activity.ComissaoDetailActivity;
 import com.diegoabreu.pocketsenado.adapter.ComissaoListAdapter;
 import com.diegoabreu.pocketsenado.adapter.SenadorListAdapter;
 import com.diegoabreu.pocketsenado.model.Comissao;
@@ -33,6 +35,7 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
     List<Comissao> comissoesCPI;
     List<Comissao> comissoesTemporarias;
     ComissaoListAdapter comissaoListAdapter;
+    Spinner spinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,13 +46,22 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
         this.comissaoService = new ComissaoService();
 
 
-        Spinner spinner = (Spinner) myView.findViewById(R.id.spinner);
+        spinner = (Spinner) myView.findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myView.getContext(),
         R.array.tipos_comissoes_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(this);
+
+        this.lvComissoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), ComissaoDetailActivity.class);
+                intent.putExtra("comissao", comissaoListAdapter.comissoes.get(i));
+                startActivity(intent);
+            }
+        });
 
         return myView;
     }

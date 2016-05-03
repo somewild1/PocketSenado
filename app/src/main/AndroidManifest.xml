@@ -25,8 +25,12 @@
         <activity
             android:name=".activity.SenadorDetailActivity"
             android:label="@string/title_activity_senador_detail"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".activity.MainActivity"></activity>
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ComissaoDetailActivity"
+            android:label="@string/title_activity_comissao_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
