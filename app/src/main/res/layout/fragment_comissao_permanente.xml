@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.diegoabreu.pocketsenado.fragment.ComissaoPermanenteFragment"
+    android:background="@color/gray_background">
+<!--TODO: comissao permanente-->
+    <TextView
+        android:id="@+id/nome_comissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="COMISSÃO DE ASSUNTOS ECONÔMICOS"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/sigla_tipo_comissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="CAE - Comissão Permanente"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/telefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="SF - Senado Federal"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+</LinearLayout>
