@@ -16,6 +16,8 @@ Aplicação para Android, nativa, que tem como objetivo principal trazer informa
 ## Desenvolvimento
 A aplicação está sendo desenvolvida utilizando o Android Studio na versão 2.0. Para contribuir com o projeto, simplesmente clone o repositório e importe-o em seu Android Studio.
 
+A API utilizada para buscar os dados sobre o senado pode ser encontrada [neste link](http://legis.senado.gov.br/dadosabertos/docs/resources.html), utilizando Enunciate, ou mesmo [aqui](http://legis.senado.gov.br/dadosabertos/docs/ui/index.html), utilizando Swagger UI.
+
 ## Bibliotecas utilizadas
 - [CircleImageView](https://github.com/hdodenhof/CircleImageView)
 - [Picasso](http://square.github.io/picasso/)
