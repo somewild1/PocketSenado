@@ -1,6 +1,11 @@
 package com.diegoabreu.pocketsenado.util;
 
+import android.util.Log;
+
 import com.diegoabreu.pocketsenado.model.Comissao;
+import com.diegoabreu.pocketsenado.model.ComissaoInquerito;
+import com.diegoabreu.pocketsenado.model.ComissaoPermanente;
+import com.diegoabreu.pocketsenado.model.ComissaoTemporaria;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,8 +23,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
  */
 public class ComissaoParser {
 
-    //TODO: implementar o parser das comissões
-    public List<Comissao> parse(InputStream inputStream) {
+    public List<Comissao> parseTemporaria(InputStream inputStream) {
 
         try {
             List<Comissao> comissoes = new ArrayList<>();
@@ -33,13 +37,13 @@ public class ComissaoParser {
             document.getDocumentElement().normalize();
 
             // pegando a tag root colegiados
-            Element root = (Element) ((Element) document.getDocumentElement().getElementsByTagName("colegiado").item(0)).getElementsByTagName("colegiados").item(0);
+            Element root = (Element) document.getDocumentElement().getElementsByTagName("Colegiados").item(0);
 
             // pegando lista de comissoes
-            NodeList comissoesNodeList = root.getElementsByTagName("colegiado");
+            NodeList comissoesNodeList = root.getElementsByTagName("Colegiado");
 
             for (int i = 0; i < comissoesNodeList.getLength(); i++) {
-                Comissao comissao = new Comissao();
+                ComissaoTemporaria comissao = new ComissaoTemporaria();
                 Element comissaoElement = (Element) comissoesNodeList.item(i);
 
                 comissao.setSigla(comissaoElement.getElementsByTagName("SiglaColegiado").item(0).getTextContent());
@@ -47,16 +51,100 @@ public class ComissaoParser {
                 comissao.setNome(comissaoElement.getElementsByTagName("NomeColegiado").item(0).getTextContent());
                 comissao.setId(Integer.parseInt(comissaoElement.getElementsByTagName("CodigoColegiado").item(0).getTextContent()));
                 comissao.setDataInicio(comissaoElement.getElementsByTagName("DataInicio").item(0).getTextContent());
+                comissao.setDescricaoTipo(comissaoElement.getElementsByTagName("DescricaoTipoColegiado").item(0).getTextContent());
                 comissao.setSiglaCasa("SF");
-                comissao.setTipoComissao(Integer.parseInt(comissaoElement.getElementsByTagName("CodigoTipoColegiado").item(0).getTextContent()));
+                comissao.setFinalidade(comissaoElement.getElementsByTagName("Finalidade").item(0).getTextContent());
 
-                if (comissao.getTipoComissao() != Comissao.TipoComissao.PERMANENTE) {
-                    comissao.setFinalidade(comissaoElement.getElementsByTagName("TextoFinalidade").item(0).getTextContent());
-                }
+                comissoes.add(comissao);
+            }
 
-                if (comissao.getTipoComissao() == Comissao.TipoComissao.CPI) {
-                    comissao.setDescricaoSubtitulo(comissaoElement.getElementsByTagName("DescricaoSubtitulo").item(0).getTextContent());
-                }
+            return comissoes;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public List<Comissao> parsePermanente(InputStream inputStream) {
+
+        try {
+            List<Comissao> comissoes = new ArrayList<>();
+
+            // criando um DocumentBuilder
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            // definindo o arquivo que vai ser parseado
+            Document document = builder.parse(inputStream);
+            document.getDocumentElement().normalize();
+
+            // pegando a tag root colegiados
+            Element root = (Element) document.getDocumentElement().getElementsByTagName("Colegiados").item(0);
+
+            // pegando lista de comissoes
+            NodeList comissoesNodeList = root.getElementsByTagName("Colegiado");
+
+            for (int i = 0; i < comissoesNodeList.getLength(); i++) {
+                ComissaoPermanente comissao = new ComissaoPermanente();
+                Element comissaoElement = (Element) comissoesNodeList.item(i);
+
+                comissao.setSigla(comissaoElement.getElementsByTagName("SiglaColegiado").item(0).getTextContent());
+                comissao.setNomeCasa("Senado Federal");
+                comissao.setNome(comissaoElement.getElementsByTagName("NomeColegiado").item(0).getTextContent());
+                comissao.setId(Integer.parseInt(comissaoElement.getElementsByTagName("CodigoColegiado").item(0).getTextContent()));
+                comissao.setDataInicio(comissaoElement.getElementsByTagName("DataInicio").item(0).getTextContent());
+                comissao.setDescricaoTipo(comissaoElement.getElementsByTagName("DescricaoTipoColegiado").item(0).getTextContent());
+                comissao.setSiglaCasa("SF");
+                comissao.setNomeSecretario(comissaoElement.getElementsByTagName("NomeSecretario").item(0).getTextContent());
+                comissao.setEnderecoSubSecretaria(comissaoElement.getElementsByTagName("EnderecoSubSecretaria").item(0).getTextContent());
+                comissao.setNumeroTelefoneSecretaria(comissaoElement.getElementsByTagName("NumeroTelefoneSecretaria").item(0).getTextContent());
+                comissao.setEmail(comissaoElement.getElementsByTagName("EnderecoMail").item(0).getTextContent());
+
+                if (comissaoElement.getElementsByTagName("DescricaoAgendaReuniao").item(0) != null)
+                    comissao.setDescricaoAgendaReuniao(comissaoElement.getElementsByTagName("DescricaoAgendaReuniao").item(0).getTextContent());
+                else
+                    comissao.setDescricaoAgendaReuniao("Sem agenda fixa");
+
+                comissoes.add(comissao);
+            }
+
+            return comissoes;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public List<Comissao> parseInquerito(InputStream inputStream) {
+
+        try {
+            List<Comissao> comissoes = new ArrayList<>();
+
+            // criando um DocumentBuilder
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            // definindo o arquivo que vai ser parseado
+            Document document = builder.parse(inputStream);
+            document.getDocumentElement().normalize();
+
+            // pegando a tag root colegiados
+            Element root = (Element) document.getDocumentElement().getElementsByTagName("Colegiados").item(0);
+
+            // pegando lista de comissoes
+            NodeList comissoesNodeList = root.getElementsByTagName("Colegiado");
+
+            for (int i = 0; i < comissoesNodeList.getLength(); i++) {
+                ComissaoInquerito comissao = new ComissaoInquerito();
+                Element comissaoElement = (Element) comissoesNodeList.item(i);
+
+                comissao.setSigla(comissaoElement.getElementsByTagName("SiglaColegiado").item(0).getTextContent());
+                comissao.setNomeCasa("Senado Federal");
+                comissao.setNome(comissaoElement.getElementsByTagName("NomeColegiado").item(0).getTextContent());
+                comissao.setId(Integer.parseInt(comissaoElement.getElementsByTagName("CodigoColegiado").item(0).getTextContent()));
+                comissao.setDataInicio(comissaoElement.getElementsByTagName("DataInicio").item(0).getTextContent());
+                comissao.setDescricaoTipo(comissaoElement.getElementsByTagName("DescricaoTipoColegiado").item(0).getTextContent());
+                comissao.setSiglaCasa("SF");
 
                 comissoes.add(comissao);
             }

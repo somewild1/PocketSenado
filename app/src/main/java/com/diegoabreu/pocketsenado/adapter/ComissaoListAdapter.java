@@ -40,7 +40,7 @@ public class ComissaoListAdapter extends ArrayAdapter<Comissao> {
         TextView siglaCasa = (TextView) convertView.findViewById(R.id.sigla_e_casa_comissao);
 
         nome.setText(this.comissoes.get(position).getNome());
-        siglaCasa.setText(this.comissoes.get(position).getTipo() + " - "  + this.comissoes.get(position).getSigla() + " | " + getItem(position).getNomeCasa());
+        siglaCasa.setText(this.comissoes.get(position).getDescricaoTipo() + " - "  + this.comissoes.get(position).getSigla() + " | " + getItem(position).getNomeCasa());
 
         return convertView;
     }

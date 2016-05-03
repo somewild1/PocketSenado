@@ -13,44 +13,14 @@ public class Comissao implements Serializable {
     private String siglaCasa;
     private String nomeCasa;
     private String dataInicio;
-    private String descricaoSubtitulo;
-    private String finalidade;
-    private int tipoComissao;
-    private String tipo;
+    private String descricaoTipo;
 
-    public String getTipo() {
-        return tipo;
+    public String getDescricaoTipo() {
+        return descricaoTipo;
     }
 
-    public int getTipoComissao() {
-        return tipoComissao;
-    }
-
-    public void setTipoComissao(int tipoComissao) {
-        this.tipoComissao = tipoComissao;
-        if (tipoComissao == 21) {
-            tipo = "PERMANENTE";
-        } else if (tipoComissao == 22) {
-            tipo = "CPI";
-        } else {
-            tipo = "TEMPORÁRIA";
-        }
-    }
-
-    public String getDescricaoSubtitulo() {
-        return descricaoSubtitulo;
-    }
-
-    public void setDescricaoSubtitulo(String descricaoSubtitulo) {
-        this.descricaoSubtitulo = descricaoSubtitulo;
-    }
-
-    public String getFinalidade() {
-        return finalidade;
-    }
-
-    public void setFinalidade(String finalidade) {
-        this.finalidade = finalidade;
+    public void setDescricaoTipo(String descricaoTipo) {
+        this.descricaoTipo = descricaoTipo;
     }
 
     public String getDataInicio() {
@@ -102,9 +72,9 @@ public class Comissao implements Serializable {
     }
 
     public static class TipoComissao {
-        public static final int PERMANENTE = 21;
-        public static final int CPI = 22;
-        public static final int TEMPORARIA = 121;
+        public static final int PERMANENTE = 1;
+        public static final int CPI = 2;
+        public static final int TEMPORARIA = 3;
     }
 
 }

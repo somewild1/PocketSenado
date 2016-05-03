@@ -58,8 +58,6 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
     public void onStart() {
         super.onStart();
 
-
-
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Comissões");
     }
 
@@ -92,7 +90,6 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
         }
     }
 
-    //TODO: terminar de terminar a seleção do spinner
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if (i == 0) {
@@ -121,7 +118,7 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        refreshComissoes(Comissao.TipoComissao.PERMANENTE);
+        refreshComissoes(Comissao.TipoComissao.TEMPORARIA);
     }
 
 }
