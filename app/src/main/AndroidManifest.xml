@@ -30,7 +30,8 @@
         <activity
             android:name=".activity.ComissaoDetailActivity"
             android:label="@string/title_activity_comissao_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.Dialog"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

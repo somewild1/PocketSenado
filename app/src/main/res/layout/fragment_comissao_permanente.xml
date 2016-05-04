@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.diegoabreu.pocketsenado.fragment.ComissaoPermanenteFragment"
-    android:background="@color/gray_background">
-<!--TODO: comissao permanente-->
+    android:background="@color/gray_background"
+    android:scrollbars="vertical">
+
     <TextView
         android:id="@+id/nome_comissao"
         android:layout_width="match_parent"
@@ -27,11 +28,64 @@
         android:padding="@dimen/block_detail_padding" />
 
     <TextView
+        android:id="@+id/sigla_casa_nome_casa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="SF | Senado Federal"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/secretario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Secretário(a): Camila Moraes Bittar"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
         android:id="@+id/telefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_detail_size"
-        android:text="SF - Senado Federal"
+        android:text="Telefone: 61 33033516"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="cae@senado.leg.br"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding"
+        android:autoLink="all"
+        android:linksClickable="true"
+        android:textColorLink="@android:color/tertiary_text_light" />
+
+    <TextView
+        android:id="@+id/endereco_secretaria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Secretaria: Ala Alexandre Costa, Sala nº 17-B"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/reunioes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Reuniões: Terças-Feiras 10:00 horas"
         android:background="#fff"
         android:layout_marginBottom="1dp"
         android:padding="@dimen/block_detail_padding" />

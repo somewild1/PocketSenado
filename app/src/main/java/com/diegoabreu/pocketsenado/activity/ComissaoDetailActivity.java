@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.diegoabreu.pocketsenado.R;
+import com.diegoabreu.pocketsenado.fragment.ComissaoInqueritoFragment;
 import com.diegoabreu.pocketsenado.fragment.ComissaoPermanenteFragment;
+import com.diegoabreu.pocketsenado.fragment.ComissaoTemporariaFragment;
 import com.diegoabreu.pocketsenado.model.Comissao;
 import com.diegoabreu.pocketsenado.model.ComissaoInquerito;
 import com.diegoabreu.pocketsenado.model.ComissaoPermanente;
@@ -19,7 +21,7 @@ import com.diegoabreu.pocketsenado.model.ComissaoTemporaria;
 
 public class ComissaoDetailActivity extends AppCompatActivity {
 
-    private Comissao comissao;
+    public Comissao comissao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +37,11 @@ public class ComissaoDetailActivity extends AppCompatActivity {
         if (comissao instanceof ComissaoPermanente) {
             fragmentTransaction.replace(R.id.fragment_container_comissao, new ComissaoPermanenteFragment()).commit();
         } else if (comissao instanceof ComissaoInquerito) {
-            fragmentTransaction.replace(R.id.fragment_container_comissao, new ComissaoPermanenteFragment()).commit();
+            fragmentTransaction.replace(R.id.fragment_container_comissao, new ComissaoInqueritoFragment()).commit();
         } else if (comissao instanceof ComissaoTemporaria) {
-            fragmentTransaction.replace(R.id.fragment_container_comissao, new ComissaoPermanenteFragment()).commit();
+            fragmentTransaction.replace(R.id.fragment_container_comissao, new ComissaoTemporariaFragment()).commit();
         }
 
-        // ativando o botão de voltar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
