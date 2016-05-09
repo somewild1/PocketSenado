@@ -1,8 +1,71 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diegoabreu.pocketsenado.fragment.ComissaoInqueritoFragment">
+    android:orientation="vertical"
+    tools:context="com.diegoabreu.pocketsenado.fragment.ComissaoPermanenteFragment"
+    android:background="@color/gray_background"
+    android:scrollbars="vertical">
+
+    <TextView
+        android:id="@+id/nome_comissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="CPI DAS PRÓTESES"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/sigla_tipo_comissao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="CPIDPRO - Comissão Parlamentar de Inquérito"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/sigla_casa_nome_casa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="SF | Senado Federal"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/secretario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Secretário(a): Reinilson Prado dos Santos - Adjunto - Donaldo Portela Rodrigues"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/descricao_subtitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Requerimento nº 93, de 2015"
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
+
+    <TextView
+        android:id="@+id/finalidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_detail_size"
+        android:text="Comissão Parlamentar de Inquérito para investigar, no prazo de 180 dias, as irregularidades e os crimes relacionados aos procedimentos médicos de colocação de órteses e próteses no País, desde a indicação e execução dos procedimentos até a cobrança pelos produtos e serviços prestados."
+        android:background="#fff"
+        android:layout_marginBottom="1dp"
+        android:padding="@dimen/block_detail_padding" />
 
 
-</FrameLayout>
+</LinearLayout>

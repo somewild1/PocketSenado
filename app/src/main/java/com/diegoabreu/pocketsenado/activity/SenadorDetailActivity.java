@@ -8,17 +8,22 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.diegoabreu.pocketsenado.R;
 import com.diegoabreu.pocketsenado.adapter.SenadorComissaoListAdapter;
 import com.diegoabreu.pocketsenado.adapter.SenadorMateriaListAdapter;
 import com.diegoabreu.pocketsenado.adapter.SenadorRelatoriaListAdapter;
+import com.diegoabreu.pocketsenado.model.Comissao;
 import com.diegoabreu.pocketsenado.model.Senador;
+import com.diegoabreu.pocketsenado.service.ComissaoService;
 import com.diegoabreu.pocketsenado.service.SenadorService;
 import com.squareup.picasso.Picasso;
 
@@ -32,9 +37,16 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
     TextView endereco;
     FrameLayout contentWrapper;
     TextView comissoesButton;
+
     AlertDialog comissoesAlertDialog;
     AlertDialog materiasAlertDialog;
     AlertDialog relatoriasAlertDialog;
+
+    SenadorComissaoListAdapter senadorComissaoListAdapter;
+    SenadorMateriaListAdapter senadorMateriaListAdapter;
+    SenadorRelatoriaListAdapter senadorRelatoriaListAdapter;
+
+    ComissaoService comissaoService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +74,9 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
 
         // carregando a foto do senador
         Picasso.with(this).load(senador.getFoto()).into((ImageView) findViewById(R.id.header_image));
+
+        // pegando a instância da ComissaoService
+        comissaoService = ComissaoService.getInstance();
 
         // carregando as informações do senador nas views
         new AsyncTask() {
@@ -92,15 +107,18 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
         endereco.setText(senador.getEndereco());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setAdapter(new SenadorComissaoListAdapter(this, senador.getComissoes()), this);
+        senadorComissaoListAdapter = new SenadorComissaoListAdapter(this, senador.getComissoes());
+        builder.setAdapter(senadorComissaoListAdapter, this);
         comissoesAlertDialog = builder.create();
 
         builder = new AlertDialog.Builder(this);
-        builder.setAdapter(new SenadorMateriaListAdapter(this, senador.getMaterias()), this);
+        senadorMateriaListAdapter = new SenadorMateriaListAdapter(this, senador.getMaterias());
+        builder.setAdapter(senadorMateriaListAdapter, this);
         materiasAlertDialog = builder.create();
 
         builder = new AlertDialog.Builder(this);
-        builder.setAdapter(new SenadorRelatoriaListAdapter(this, senador.getRelatorias()), this);
+        senadorRelatoriaListAdapter = new SenadorRelatoriaListAdapter(this, senador.getRelatorias());
+        builder.setAdapter(senadorRelatoriaListAdapter, this);
         relatoriasAlertDialog = builder.create();
     }
 
@@ -127,9 +145,30 @@ public class SenadorDetailActivity extends AppCompatActivity implements DialogIn
 
     public void abrirRelatorias(View view) { relatoriasAlertDialog.show(); }
 
-    //TODO: implementar o método onClick das comissões e das matérias
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
+
+        if (dialogInterface == comissoesAlertDialog) {
+
+            new AsyncTask() {
+                @Override
+                protected Object doInBackground(Object[] objects) {
+                    return comissaoService.getComissao(senadorComissaoListAdapter.getItem((int) objects[0]).getId());
+                }
+
+                @Override
+                protected void onPostExecute(Object o) {
+                    Intent intent = new Intent(SenadorDetailActivity.this, ComissaoDetailActivity.class);
+                    intent.putExtra("comissao", (Comissao) o);
+                    startActivity(intent);
+                }
+            }.execute(i);
+
+        } else if (dialogInterface == materiasAlertDialog) {
+
+        } else if (dialogInterface == relatoriasAlertDialog) {
+
+        }
 
     }
 

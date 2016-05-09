@@ -1,7 +1,5 @@
 package com.diegoabreu.pocketsenado.service;
 
-import android.util.Log;
-
 import com.diegoabreu.pocketsenado.model.Comissao;
 import com.diegoabreu.pocketsenado.util.ComissaoParser;
 
@@ -11,54 +9,66 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Created by mtuser on 29/04/16.
+ * Created by mtuser on 04/05/16.
  */
 public class ComissaoService {
 
-    HttpURLConnection urlConnection;
+    private static ComissaoService ourInstance = new ComissaoService();
 
-    public InputStream getInputStreamComissao(int tipo) {
-        URL url = null;
-
-        try {
-            String tipoComissao;
-
-            if (tipo == Comissao.TipoComissao.PERMANENTE) {
-                tipoComissao = "permanente";
-            } else if (tipo == Comissao.TipoComissao.CPI) {
-                tipoComissao = "cpi";
-            } else {
-                tipoComissao = "temporaria";
-            }
-
-            url = new URL("http://legis.senado.gov.br/dadosabertos/comissao/lista/" + tipoComissao);
-
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-
-            return urlConnection.getInputStream();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+    public static ComissaoService getInstance() {
+        return ourInstance;
     }
 
+    private static List<Comissao> comissoesPermanentes = null;
+    private static List<Comissao> comissoesTemporarias = null;
+    private static List<Comissao> comissoesInquerito = null;
+
+    HttpURLConnection urlConnection;
+
     public List<Comissao> getComissoes(int tipo) {
-        List<Comissao> comissoes = null;
         ComissaoParser comissaoParser = new ComissaoParser();
 
         if (tipo == Comissao.TipoComissao.PERMANENTE) {
-            comissoes = comissaoParser.parsePermanente(getInputStreamComissaoPermanente());
+
+            if (comissoesPermanentes == null)
+                comissoesPermanentes = comissaoParser.parsePermanente(getInputStreamComissaoPermanente());
+            return comissoesPermanentes;
+
         } else if (tipo == Comissao.TipoComissao.TEMPORARIA) {
-            comissoes = comissaoParser.parseTemporaria(getInputStreamComissaoTemporaria());
+
+            if (comissoesTemporarias == null)
+                comissoesTemporarias = comissaoParser.parseTemporaria(getInputStreamComissaoTemporaria());
+            return comissoesTemporarias;
+
         } else if (tipo == Comissao.TipoComissao.CPI) {
-            comissoes = comissaoParser.parseInquerito(getInputStreamComissaoInquerito());
+
+            if (comissoesInquerito == null)
+                comissoesInquerito = comissaoParser.parseInquerito(getInputStreamComissaoInquerito());
+            return comissoesInquerito;
+
         } else {
             throw new RuntimeException("Tipo de comissão não esperado.");
         }
 
-        return comissoes;
+    }
+
+    public Comissao getComissao(int id) {
+        for (int i = 0; i < getComissoes(Comissao.TipoComissao.PERMANENTE).size(); i++) {
+            if (comissoesPermanentes.get(i).getId() == id)
+                return comissoesPermanentes.get(i);
+        }
+
+        for (int i = 0; i < getComissoes(Comissao.TipoComissao.TEMPORARIA).size(); i++) {
+            if (comissoesTemporarias.get(i).getId() == id)
+                return comissoesTemporarias.get(i);
+        }
+
+        for (int i = 0; i < getComissoes(Comissao.TipoComissao.CPI).size(); i++) {
+            if (comissoesInquerito.get(i).getId() == id)
+                return comissoesInquerito.get(i);
+        }
+
+        return null;
     }
 
     public InputStream getInputStreamComissaoTemporaria() {

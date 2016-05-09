@@ -145,6 +145,12 @@ public class ComissaoParser {
                 comissao.setDataInicio(comissaoElement.getElementsByTagName("DataInicio").item(0).getTextContent());
                 comissao.setDescricaoTipo(comissaoElement.getElementsByTagName("DescricaoTipoColegiado").item(0).getTextContent());
                 comissao.setSiglaCasa("SF");
+                if (comissaoElement.getElementsByTagName("NomeSecretario").item(0) != null)
+                    comissao.setNomeSecretario(comissaoElement.getElementsByTagName("NomeSecretario").item(0).getTextContent());
+                else
+                    comissao.setNomeSecretario("Não possui");
+                comissao.setDescricaoSubtitulo(comissaoElement.getElementsByTagName("DescricaoSubtitulo").item(0).getTextContent());
+                comissao.setFinalidade(comissaoElement.getElementsByTagName("Finalidade").item(0).getTextContent());
 
                 comissoes.add(comissao);
             }

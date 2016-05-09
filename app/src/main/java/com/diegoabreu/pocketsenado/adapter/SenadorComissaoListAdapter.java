@@ -22,7 +22,7 @@ import java.util.List;
 public class SenadorComissaoListAdapter extends ArrayAdapter<Comissao> {
 
     private Activity context;
-    private List<Comissao> comissoes;
+    public List<Comissao> comissoes;
 
     public SenadorComissaoListAdapter(Activity context, List<Comissao> comissoes) {
         super(context, R.layout.adapter_list_item_senador_comisssao, comissoes);

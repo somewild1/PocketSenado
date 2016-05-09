@@ -19,7 +19,7 @@ import java.util.List;
 public class SenadorMateriaListAdapter extends ArrayAdapter<Materia> {
 
     Activity context;
-    List<Materia> materias;
+    public List<Materia> materias;
 
     public SenadorMateriaListAdapter(Activity context, List<Materia> materias) {
         super(context, R.layout.adapter_list_item_senador_materia, materias);

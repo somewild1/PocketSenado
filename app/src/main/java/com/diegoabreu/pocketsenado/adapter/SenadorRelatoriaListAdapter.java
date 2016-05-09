@@ -19,7 +19,7 @@ import java.util.List;
 public class SenadorRelatoriaListAdapter extends ArrayAdapter<Relatoria> {
 
     private Activity context;
-    private List<Relatoria> relatorias;
+    public List<Relatoria> relatorias;
 
     public SenadorRelatoriaListAdapter(Activity context, List<Relatoria> relatorias) {
         super(context, R.layout.adapter_list_item_senador_relatoria, relatorias);

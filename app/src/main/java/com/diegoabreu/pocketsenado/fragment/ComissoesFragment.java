@@ -43,7 +43,7 @@ public class ComissoesFragment extends Fragment implements AdapterView.OnItemSel
         setHasOptionsMenu(true);
 
         this.lvComissoes = (ListView) myView.findViewById(R.id.list_view_comissoes);
-        this.comissaoService = new ComissaoService();
+        this.comissaoService = ComissaoService.getInstance();
 
 
         spinner = (Spinner) myView.findViewById(R.id.spinner);
